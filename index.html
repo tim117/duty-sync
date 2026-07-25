@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>DutySync 排班表</title>
     <link rel="stylesheet" href="style.css">
+    
+    <!-- 載入 Firebase 雲端套件 -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 </head>
 <body>
     <div class="app-container">
@@ -12,7 +16,7 @@
             <div class="month-controls">
                 <input type="month" id="month-picker" value="2026-07">
             </div>
-            <div class="instruction">💡 點擊日期格子即可手動調換班別</div>
+            <div class="instruction">💡 點擊日期格子即可手動調換班別 (雲端即時同步)</div>
         </header>
 
         <div class="calendar-header">
