@@ -125,9 +125,9 @@ function renderGrid(year, month) {
             // ★ 請將下方引號內的網址，替換成您剛剛拿到的 GAS 網頁應用程式網址 ★
             const gasUrl = "https://script.google.com/macros/s/AKfycbx5dE93SohpB1QGE0yRWQr2C-tCs9xcveV-mZHDHUj3a5bH-PTenzwDcEeVL3MnBBLg3g/exec";
             
+            const notifySubject = "🔔【排班系統】班表異動通知";
             const notifyMessage = `系統偵測到班表異動，詳細資訊如下：\n\n・日期：${dateString}\n・狀態：${actionText}\n\n(此為系統自動發送之信件，請勿直接回覆)`;
 
-            // 使用 no-cors 模式呼叫 GAS 避免瀏覽器阻擋
             fetch(gasUrl, {
                 method: "POST",
                 mode: "no-cors",
