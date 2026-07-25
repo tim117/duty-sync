@@ -9,27 +9,16 @@
 <body>
     <div class="app-container">
         <header>
-            <!-- 月份選擇器 -->
             <div class="month-controls">
                 <input type="month" id="month-picker" value="2026-07">
             </div>
-            
-            <!-- 統計區塊 (縮小並改為橫排) -->
-            <div class="stats-board">
-                <div class="stat-card lin">
-                    <span class="stat-title">林 (全天)</span>
-                    <span id="lin-days" class="stat-num">0天</span>
-                </div>
-                <div class="stat-card chen">
-                    <span class="stat-title">陳 (白/休)</span>
-                    <span id="chen-days" class="stat-num">0天</span>
-                </div>
-            </div>
         </header>
 
-        <!-- 日曆標頭 -->
+        <!-- 日曆標頭 (六、日加入 weekend-text 類別) -->
         <div class="calendar-header">
-            <div>日</div><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div>
+            <div class="weekend-text">日</div>
+            <div>一</div><div>二</div><div>三</div><div>四</div><div>五</div>
+            <div class="weekend-text">六</div>
         </div>
         
         <!-- 排班網格生成區 -->
