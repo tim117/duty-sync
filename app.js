@@ -153,6 +153,22 @@ monthPicker.addEventListener('change', (e) => {
     generateCalendar(parseInt(year), parseInt(month));
 });
 
-// 網頁載入時，讀取 HTML 上的預設月份並初始化畫面
-const [initYear, initMonth] = monthPicker.value.split('-');
-generateCalendar(parseInt(initYear), parseInt(initMonth));
+// ==========================================
+// 6. 系統初始化 (自動定位到當前月份)
+// ==========================================
+// 監聽頂部月份選擇器的變更
+monthPicker.addEventListener('change', (e) => {
+    const [year, month] = e.target.value.split('-');
+    generateCalendar(parseInt(year), parseInt(month));
+});
+
+// 自動抓取您手機或電腦當下的真實時間
+const today = new Date();
+const autoYear = today.getFullYear();
+const autoMonth = String(today.getMonth() + 1).padStart(2, '0');
+
+// 將頂部選擇器自動切換為「這個月」
+monthPicker.value = `${autoYear}-${autoMonth}`;
+
+// 初始化當月畫面
+generateCalendar(autoYear, parseInt(autoMonth));
