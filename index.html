@@ -9,16 +9,20 @@
 <body>
     <div class="app-container">
         <header>
-            <h1>7月 值班表</h1>
-            <!-- 統計區塊 -->
+            <!-- 月份選擇器 -->
+            <div class="month-controls">
+                <input type="month" id="month-picker" value="2026-07">
+            </div>
+            
+            <!-- 統計區塊 (縮小並改為橫排) -->
             <div class="stats-board">
                 <div class="stat-card lin">
-                    <span>林 (全天)</span>
-                    <h2 id="lin-days">0 天</h2>
+                    <span class="stat-title">林 (全天)</span>
+                    <span id="lin-days" class="stat-num">0天</span>
                 </div>
                 <div class="stat-card chen">
-                    <span>陳 (白/休)</span>
-                    <h2 id="chen-days">0 天</h2>
+                    <span class="stat-title">陳 (白/休)</span>
+                    <span id="chen-days" class="stat-num">0天</span>
                 </div>
             </div>
         </header>
