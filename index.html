@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DutySync 排班表</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>7月 值班表</h1>
+            <!-- 統計區塊 -->
+            <div class="stats-board">
+                <div class="stat-card lin">
+                    <span>林 (全天)</span>
+                    <h2 id="lin-days">0 天</h2>
+                </div>
+                <div class="stat-card chen">
+                    <span>陳 (白/休)</span>
+                    <h2 id="chen-days">0 天</h2>
+                </div>
+            </div>
+        </header>
+
+        <!-- 日曆標頭 -->
+        <div class="calendar-header">
+            <div>日</div><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div>
+        </div>
+        
+        <!-- 排班網格生成區 -->
+        <div id="calendar-grid" class="calendar-grid">
+            <!-- JS 會自動在這裡產生日期與班表 -->
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
