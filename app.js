@@ -60,12 +60,14 @@ function renderGrid(year, month) {
     const daysInMonth = new Date(year, month, 0).getDate();
     const startDayOfWeek = new Date(year, month - 1, 1).getDay(); 
 
-    // 計算目標月份 1 號距離 2026-07-05 基準日的天數差
+    // --- ★ 新增：抓到使用者手機或電腦當下的真實今天日期 ★ ---
+    const now = new Date();
+    const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+
+    // ... (diffTime, diffDays logic unchanged) ...
     const targetDate = new Date(Date.UTC(year, month - 1, 1));
     const diffTime = targetDate.getTime() - anchorDate.getTime();
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-    
-    // 求出該月 1 號在 shiftPattern 中的起始索引
     let startIndex = (diffDays % 14 + 14) % 14;
 
     // 補齊月初的空白天數
@@ -83,21 +85,24 @@ function renderGrid(year, month) {
         // 產生該日期的唯一 Key (例如: "2026-07-25")
         const dateString = `${year}-${String(month).padStart(2, '0')}-${String(i + 1).padStart(2, '0')}`;
         
-        // 從雲端變數 dbSwaps 讀取這天是否有被手動調班過
+        // ... (dbSwaps, isModified, uiClass logic unchanged) ...
         let savedPerson = dbSwaps[dateString];
         let finalPerson = savedPerson ? savedPerson : defaultPerson;
         let isModified = savedPerson && savedPerson !== defaultPerson;
-
-        // 判斷視覺樣式
         let uiClass = finalPerson === "林" ? "shift-lin" : "shift-chen";
         const currentDayOfWeek = (startDayOfWeek + i) % 7;
         const isWeekend = currentDayOfWeek === 0 || currentDayOfWeek === 6;
         const weekendClass = isWeekend ? "weekend-bg" : "";
         const modifiedClass = isModified ? "modified" : "";
 
+        // --- ★ 新增：判斷這一天格子是否為今天 ★ ---
+        const isToday = (dateString === todayStr);
+        const todayClass = isToday ? "is-today" : ""; // 如果是今天，加上 'is-today' class
+
         // 建立格子 DOM 元素
         const cell = document.createElement('div');
-        cell.className = `day-cell ${weekendClass} ${modifiedClass}`; 
+        // --- ★ 修改：將 todayClass 加入 cell 的 className 中 ★ ---
+        cell.className = `day-cell ${weekendClass} ${modifiedClass} ${todayClass}`; 
         cell.innerHTML = `
             <div class="date-num">${i + 1}</div>
             <div class="shift-label ${uiClass}">${finalPerson}</div>
