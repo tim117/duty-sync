@@ -50,8 +50,24 @@ body { background-color: #f5f5f7; color: #333; padding: 8px; /* 縮小外部留�
 }
 /* --- 今日圈選樣式 (紅色蠟筆效果) --- */
 .day-cell.is-today {
-    position: relative; /* 為了讓圈圈可以疊上去 */
-    z-index: 1; /* 確保圈圈在文字上面 */
+    position: relative; 
+}
+
+.day-cell.is-today::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-5deg); /* 保留手寫歪歪的感覺 */
+    width: 105%;
+    height: 105%;
+    /* 改用標準的紅色實線，徹底避開 Safari 虛線與陰影造成的色塊 Bug */
+    border: 3px solid #ff3b30; 
+    border-radius: 15px; 
+    /* 🌟 關鍵：強制中心透明，絕對不遮擋底下的文字 */
+    background-color: transparent !important; 
+    pointer-events: none;
+    z-index: 5;
 }
 
 /* 使用 pseudo-element 製作像被紅蠟筆畫圈的效果 */
